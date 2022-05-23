@@ -12,10 +12,10 @@ def QPSK(data_array):
     else:
         arr = [] # массив комплексных чисел
         for i in range(0, len(data_array), 2):
-            bi = data_array[i]
-            bi1 = data_array[i+1]
-            real = (1 - 2 * bi) / math.sqrt(2)
-            imag = (1 - 2 * bi1) / math.sqrt(2)
+            bit = data_array[i]
+            bit1 = data_array[i+1]
+            real = (1 - 2 * bit) / math.sqrt(2)
+            imag = (1 - 2 * bit1) / math.sqrt(2)
             arr.append(complex(real, imag))
         return arr
 
@@ -26,12 +26,12 @@ def QAM16(data_array):
     else:
         arr = []
         for i in range(0, len(data_array), 4):
-            bi = data_array[i]
-            bi1 = data_array[i+1]
-            bi2 = data_array[i+2]
-            bi3 = data_array[i+3]
-            real = (1 - 2 * bi) * (2 - (1 - 2 * bi2)) / math.sqrt(10)
-            imag = (1 - 2 * bi1) * (2 - (1 - 2 * bi3)) / math.sqrt(10)
+            bit = data_array[i]
+            bit1 = data_array[i+1]
+            bit2 = data_array[i+2]
+            bit3 = data_array[i+3]
+            real = (1 - 2 * bit) * (2 - (1 - 2 * bit2)) / math.sqrt(10)
+            imag = (1 - 2 * bit1) * (2 - (1 - 2 * bit3)) / math.sqrt(10)
             arr.append(complex(real, imag))
         return arr
     
@@ -42,14 +42,14 @@ def QAM64(data_array):
     else:
         arr = []
         for i in range(0, len(data_array), 6):
-            bi = data_array[i]
-            bi1 = data_array[i+1]
-            bi2 = data_array[i+2]
-            bi3 = data_array[i+3]
-            bi4 = data_array[i+4]
-            bi5 = data_array[i+5]
-            real = (1 - 2 * bi) * (4 - (1 - 2 * bi2) * (2 - (1 - 2 * bi4))) / math.sqrt(42)
-            imag = (1 - 2 * bi1) * (4 - (1 - 2 * bi3) * (2 - (1 - 2 * bi5))) / math.sqrt(42)
+            bit = data_array[i]
+            bit1 = data_array[i+1]
+            bit2 = data_array[i+2]
+            bit3 = data_array[i+3]
+            bit4 = data_array[i+4]
+            bit5 = data_array[i+5]
+            real = (1 - 2 * bit) * (4 - (1 - 2 * bit2) * (2 - (1 - 2 * bit4))) / math.sqrt(42)
+            imag = (1 - 2 * bit1) * (4 - (1 - 2 * bit3) * (2 - (1 - 2 * bit5))) / math.sqrt(42)
             arr.append(complex(real, imag))
         return arr
     
@@ -60,27 +60,27 @@ def QAM256(data_array):
     else:
         arr = []
         for i in range(0, len(data_array), 8):
-            bi = data_array[i]
-            bi1 = data_array[i+1]
-            bi2 = data_array[i+2]
-            bi3 = data_array[i+3]
-            bi4 = data_array[i+4]
-            bi5 = data_array[i+5]
-            bi6 = data_array[i+6]
-            bi7 = data_array[i+7]
-            real = (1 - 2 * bi) * (8 - (1 - 2 * bi2) * (4 - (1 - 2 * bi4) * (2 - (1 - 2 * bi6)))) / math.sqrt(170)
-            imag = (1 - 2 * bi1) * (8 - (1 - 2 * bi3) * (4 - (1 - 2 * bi5) * (2 - (1 - 2 * bi7)))) / math.sqrt(170)
+            bit = data_array[i]
+            bit1 = data_array[i+1]
+            bit2 = data_array[i+2]
+            bit3 = data_array[i+3]
+            bit4 = data_array[i+4]
+            bit5 = data_array[i+5]
+            bit6 = data_array[i+6]
+            bit7 = data_array[i+7]
+            real = (1 - 2 * bit) * (8 - (1 - 2 * bit2) * (4 - (1 - 2 * bit4) * (2 - (1 - 2 * bit6)))) / math.sqrt(170)
+            imag = (1 - 2 * bit1) * (8 - (1 - 2 * bit3) * (4 - (1 - 2 * bit5) * (2 - (1 - 2 * bit7)))) / math.sqrt(170)
             arr.append(complex(real, imag))
         return arr
     
-def decode(s, bits, func):
+def decode(s, bitts, func):
     result = []
     for i in s:
         didx = []
         dmin = 2
-        for b in range(0, 2 ** bits):
+        for b in range(0, 2 ** bitts):
             array = []
-            for j in range(0, bits):
+            for j in range(0, bitts):
                 array.append(b % 2)
                 b = int(b / 2)
             res = func(array)[0]
